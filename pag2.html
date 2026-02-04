@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>O'BRAN Logistics Park</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-dark: #0f2027;
+      --primary: #203a43;
+      --primary-light: #2c5364;
+      --accent: #00c6ff;
+      --light-bg: #f4f6f8;
+      --white: #ffffff;
+      --shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+      --transition: all 0.3s ease;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--light-bg);
+      color: #333;
+      line-height: 1.5;
+      padding-top: 60px;
+      font-size: 16px;
+    }
+    
+    /* Navegación profesional */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(15, 32, 39, 0.98);
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 12px 0;
+      transition: var(--transition);
+      height: 60px;
+    }
+    
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+      height: 100%;
+    }
+    
+    .logo {
+      color: white;
+      font-weight: 600;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      height: 40px;
+    }
+    
+    .logo-img {
+      height: 40px;
+      width: auto;
+      object-fit: contain;
+      transition: var(--transition);
+    }
+    
+    .logo:hover .logo-img {
+      transform: scale(1.05);
+    }
+    
+    .logo-text {
+      margin-left: 10px;
+      font-size: 1.1rem;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+    
+    .logo-main {
+      font-weight: 700;
+      color: white;
+    }
+    
+    .logo-sub {
+      font-size: 0.75rem;
+      color: var(--accent);
+      font-weight: 500;
+    }
+    
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+    }
+    
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: var(--transition);
+      position: relative;
+      padding: 4px 0;
+      white-space: nowrap;
+    }
+    
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+    
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: var(--transition);
+    }
+    
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+    
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.3rem;
+      cursor: pointer;
+      width: 36px;
+      height: 36px;
+      border-radius: 4px;
+      transition: var(--transition);
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .mobile-menu-btn:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Header profesional con logo */
+    header {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary), var(--primary-light));
+      color: var(--white);
+      padding: 70px 15px 50px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      margin-top: -60px;
+    }
+    
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+      background-size: cover;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .header-logo {
+      height: 80px;
+      width: auto;
+      margin-bottom: 20px;
+      object-fit: contain;
+    }
+    
+    header h1 {
+      font-size: 2rem;
+      margin-bottom: 12px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    
+    header .tagline {
+      font-size: 0.95rem;
+      max-width: 900px;
+      margin: 0 auto 20px;
+      opacity: 0.9;
+      line-height: 1.4;
+    }
+    
+    .cta-button {
+      display: inline-block;
+      background-color: var(--accent);
+      color: var(--white);
+      padding: 10px 22px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 15px;
+      transition: var(--transition);
+      border: 2px solid var(--accent);
+      box-shadow: 0 3px 10px rgba(0, 198, 255, 0.3);
+      font-size: 0.9rem;
+    }
+    
+    .cta-button:hover {
+      background-color: transparent;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 198, 255, 0.4);
+    }
+    
+    /* Secciones profesionales */
+    section {
+      padding: 40px 0;
+    }
+    
+    .section-title {
+      text-align: center;
+      color: var(--primary);
+      margin-bottom: 25px;
+      font-size: 1.5rem;
+      position: relative;
+      line-height: 1.3;
+    }
+    
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(to right, var(--primary-dark), var(--accent));
+      margin: 10px auto 0;
+      border-radius: 2px;
+    }
+    
+    /* Sección de ventajas/información clave */
+    .advantages-section {
+      background: linear-gradient(135deg, #1a3a4a, #2c5364);
+      color: white;
+      padding: 50px 0;
+    }
+    
+    .advantages-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+    
+    .advantages-title {
+      text-align: center;
+      color: white;
+      margin-bottom: 40px;
+      font-size: 1.8rem;
+      position: relative;
+    }
+    
+    .advantages-title::after {
+      content: '';
+      display: block;
+      width: 70px;
+      height: 3px;
+      background: var(--accent);
+      margin: 15px auto 0;
+      border-radius: 2px;
+    }
+    
+    .advantages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    
+    .advantage-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: var(--transition);
+    }
+    
+    .advantage-card:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+    }
+    
+    .advantage-card h3 {
+      color: var(--accent);
+      margin-bottom: 20px;
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .advantage-card h3 i {
+      font-size: 1.5rem;
+    }
+    
+    /* Grid profesional */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    
+    .card {
+      background: var(--white);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      border-top: 4px solid transparent;
+      overflow: hidden;
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      border-top-color: var(--accent);
+    }
+    
+    .card h3 {
+      margin-top: 0;
+      color: var(--primary);
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .card h3 i {
+      margin-right: 8px;
+      color: var(--accent);
+      font-size: 1rem;
+    }
+    
+    .card p {
+      font-size: 0.9rem;
+      line-height: 1.4;
+      margin-bottom: 0;
+    }
+    
+    /* Tarjetas con imágenes - TODAS IGUALES */
+    .card-with-icon {
+      position: relative;
+      padding-top: 70px;
+    }
+    
+    .card-icon {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--primary-light), var(--accent));
+      border-radius: 10px;
+      color: white;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Iconos específicos */
+    .icon-brick {
+      background: linear-gradient(135deg, #8B4513, #A0522D);
+    }
+    
+    .icon-brick::before {
+      content: '';
+      position: absolute;
+      width: 30px;
+      height: 15px;
+      background: 
+        linear-gradient(90deg, transparent 25%, rgba(255,255,255,0.2) 25%, rgba(255,255,255,0.2) 50%, transparent 50%, transparent 75%, rgba(255,255,255,0.2) 75%),
+        linear-gradient(0deg, #654321, #8B4513);
+      background-size: 8px 8px;
+      border-radius: 3px;
+    }
+    
+    .icon-location {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+    }
+    
+    .icon-location i {
+      font-size: 1.5rem;
+    }
+    
+    /* Estadísticas profesionales */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+    
+    .stat {
+      background: var(--white);
+      padding: 20px 15px;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .stat:hover {
+      transform: translateY(-3px);
+    }
+    
+    .stat::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(to right, var(--primary-light), var(--accent));
+    }
+    
+    .stat strong {
+      font-size: 1.5rem;
+      color: var(--primary);
+      display: block;
+      font-weight: 700;
+      margin-bottom: 5px;
+      line-height: 1.2;
+    }
+    
+    .stat span {
+      color: #666;
+      font-size: 0.85rem;
+    }
+    
+    /* Caja destacada profesional */
+    .highlight-box {
+      background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
+      color: var(--white);
+      padding: 25px 20px;
+      border-radius: 12px;
+      margin: 25px 0;
+      box-shadow: var(--shadow);
+    }
+    
+    /* TABLA PROFESIONAL CORREGIDA - Responsive */
+    .table-container {
+      width: 100%;
+      overflow-x: auto;
+      margin-top: 20px;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      -webkit-overflow-scrolling: touch;
+    }
+    
+    .lots-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--white);
+      min-width: 500px;
+    }
+    
+    .lots-table th, .lots-table td {
+      padding: 14px 12px;
+      text-align: center;
+      border-bottom: 1px solid #eee;
+      font-size: 0.9rem;
+    }
+    
+    .lots-table th {
+      background-color: var(--primary);
+      color: var(--white);
+      font-weight: 600;
+      font-size: 0.95rem;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    
+    .lots-table tr:last-child td {
+      border-bottom: none;
+    }
+    
+    .lots-table tr:hover {
+      background-color: rgba(0, 198, 255, 0.05);
+    }
+    
+    .lots-table td:first-child {
+      font-weight: 600;
+      color: var(--primary);
+    }
+    
+    .lots-table td:nth-child(2) {
+      font-family: 'Courier New', monospace;
+      color: #2c5364;
+    }
+    
+    .lots-table td:nth-child(3) {
+      color: #27ae60;
+      font-weight: 600;
+    }
+    
+    /* Indicador de scroll para móvil */
+    .table-scroll-hint {
+      display: none;
+      text-align: center;
+      margin-top: 10px;
+      font-size: 0.8rem;
+      color: #666;
+      padding: 5px;
+    }
+    
+    .table-scroll-hint i {
+      margin-right: 5px;
+      color: var(--accent);
+    }
+    
+    /* Lista de características profesional */
+    .features-list {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
+    }
+    
+    .features-list li {
+      padding: 10px 0 10px 32px;
+      position: relative;
+      margin-bottom: 8px;
+      border-bottom: 1px dashed #eee;
+      font-size: 0.9rem;
+    }
+    
+    .features-list li:before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      top: 10px;
+      background-color: var(--accent);
+      color: white;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+    }
+    
+    /* Información de ubicación profesional */
+    .location-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: center;
+      margin-top: 25px;
+    }
+    
+    .location-text {
+      flex: 1;
+      min-width: 0;
+    }
+    
+    .location-text p {
+      font-size: 0.9rem;
+      line-height: 1.4;
+      margin-bottom: 15px;
+    }
+    
+    .map-link {
+      display: inline-flex;
+      align-items: center;
+      background: var(--primary);
+      color: var(--white);
+      padding: 10px 18px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 10px;
+      transition: var(--transition);
+      font-size: 0.85rem;
+    }
+    
+    .map-link:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 3px 10px rgba(32, 58, 67, 0.3);
+    }
+    
+    .map-link i {
+      margin-right: 6px;
+      font-size: 0.9rem;
+    }
+    
+    /* Botón de Instagram */
+    .instagram-button {
+      display: inline-flex;
+      align-items: center;
+      background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 15px;
+      transition: var(--transition);
+      box-shadow: 0 3px 10px rgba(193, 53, 132, 0.3);
+    }
+    
+    .instagram-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(193, 53, 132, 0.4);
+    }
+    
+    .instagram-button i {
+      margin-right: 8px;
+      font-size: 1.1rem;
+    }
+    
+    /* Footer profesional */
+    footer {
+      background-color: var(--primary-dark);
+      color: var(--white);
+      padding: 40px 0 20px;
+      text-align: center;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+    
+    .footer-highlight {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px 15px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      font-size: 0.9rem;
+    }
+    
+    .footer-highlight p {
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      line-height: 1.4;
+    }
+    
+    .footer-highlight i {
+      margin-right: 8px;
+      color: var(--accent);
+      font-size: 0.9rem;
+    }
+    
+    .copyright {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.8rem;
+      opacity: 0.8;
+      line-height: 1.4;
+    }
+    
+    /* Animaciones profesionales */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .animate {
+      animation: fadeInUp 0.6s ease forwards;
+    }
+    
+    /* Secciones con fondo alternado */
+    .alt-bg {
+      background-color: #f0f5f7;
+    }
+    
+    /* Responsive Design profesional */
+    @media (min-width: 768px) {
+      body {
+        padding-top: 70px;
+        font-size: 17px;
+      }
+      
+      .navbar {
+        padding: 15px 0;
+        height: 70px;
+      }
+      
+      .logo {
+        height: 45px;
+      }
+      
+      .logo-img {
+        height: 45px;
+      }
+      
+      .logo-text {
+        font-size: 1.2rem;
+      }
+      
+      .header-logo {
+        height: 100px;
+        margin-bottom: 25px;
+      }
+      
+      header {
+        padding: 100px 20px 70px;
+        margin-top: -70px;
+      }
+      
+      header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+      }
+      
+      header .tagline {
+        font-size: 1.1rem;
+        margin-bottom: 25px;
+      }
+      
+      .cta-button {
+        padding: 12px 28px;
+        font-size: 1rem;
+      }
+      
+      section {
+        padding: 60px 0;
+      }
+      
+      .section-title {
+        font-size: 1.8rem;
+        margin-bottom: 35px;
+      }
+      
+      .section-title::after {
+        width: 70px;
+        height: 4px;
+        margin: 12px auto 0;
+      }
+      
+      .advantages-title {
+        font-size: 2.2rem;
+      }
+      
+      .grid {
+        gap: 25px;
+      }
+      
+      .card {
+        padding: 25px;
+      }
+      
+      .card h3 {
+        font-size: 1.2rem;
+      }
+      
+      .card-with-icon {
+        padding-top: 80px;
+      }
+      
+      .card-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 1.3rem;
+      }
+      
+      .stats {
+        gap: 20px;
+      }
+      
+      .stat {
+        padding: 25px 20px;
+      }
+      
+      .stat strong {
+        font-size: 1.8rem;
+      }
+      
+      .highlight-box {
+        padding: 30px;
+      }
+      
+      .table-container {
+        border-radius: 12px;
+      }
+      
+      .lots-table th, .lots-table td {
+        padding: 16px 15px;
+      }
+    }
+    
+    @media (min-width: 992px) {
+      body {
+        font-size: 18px;
+      }
+      
+      .header-logo {
+        height: 120px;
+      }
+      
+      header h1 {
+        font-size: 3rem;
+      }
+      
+      header .tagline {
+        font-size: 1.3rem;
+      }
+      
+      .section-title {
+        font-size: 2.2rem;
+      }
+      
+      .advantages-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 30px;
+      }
+      
+      .card h3 {
+        font-size: 1.4rem;
+      }
+      
+      .card-with-icon {
+        padding-top: 85px;
+      }
+      
+      .card-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+      }
+      
+      .stats {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+      
+      .stat strong {
+        font-size: 2.5rem;
+      }
+    }
+    
+    @media (max-width: 767px) {
+      .nav-links {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: var(--primary-dark);
+        flex-direction: column;
+        align-items: center;
+        padding: 15px 0;
+        gap: 0;
+        transform: translateY(-100%);
+        opacity: 0;
+        transition: var(--transition);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        visibility: hidden;
+        z-index: 999;
+        max-height: calc(100vh - 60px);
+        overflow-y: auto;
+      }
+      
+      .nav-links.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+      }
+      
+      .nav-links li {
+        width: 100%;
+        text-align: center;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      
+      .nav-links li:last-child {
+        border-bottom: none;
+      }
+      
+      .mobile-menu-btn {
+        display: flex;
+      }
+      
+      .logo-text {
+        display: none;
+      }
+      
+      .header-logo {
+        height: 70px;
+        margin-bottom: 15px;
+      }
+      
+      .grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+      
+      .advantages-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      /* Mostrar indicador de scroll en móvil */
+      .table-scroll-hint {
+        display: block;
+      }
+      
+      .location-info {
+        flex-direction: column;
+      }
+      
+      .location-text {
+        width: 100%;
+      }
+      
+      .footer-highlight p {
+        justify-content: flex-start;
+        text-align: left;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .stats {
+        grid-template-columns: 1fr;
+      }
+      
+      .stat {
+        padding: 18px 15px;
+      }
+      
+      .stat strong {
+        font-size: 1.8rem;
+      }
+      
+      .card-with-icon {
+        padding-top: 70px;
+      }
+      
+      .lots-table {
+        min-width: 400px;
+      }
+      
+      .lots-table th, .lots-table td {
+        padding: 12px 10px;
+        font-size: 0.85rem;
+      }
+      
+      .header-logo {
+        height: 60px;
+      }
+    }
+    
+    @media (max-width: 360px) {
+      header h1 {
+        font-size: 1.8rem;
+      }
+      
+      .section-title {
+        font-size: 1.4rem;
+      }
+      
+      .header-logo {
+        height: 50px;
+      }
+      
+      .lots-table {
+        min-width: 350px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navegación profesional -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#home" class="logo">
+        <!-- Logo en nube -->
+        <img src="LOGO.jpg" alt="O'BRAN Logistics Park" class="logo-img">
+        <div class="logo-text">
+          <span class="logo-main">O'BRAN</span>
+          <span class="logo-sub">Logistics Park</span>
+        </div>
+      </a>
+      <button class="mobile-menu-btn" id="mobileMenuBtn">
+        <i class="fas fa-bars"></i>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">Quiénes Somos</a></li>
+        <li><a href="#experience">Experiencia</a></li>
+        <li><a href="#location">Ubicación</a></li>
+        <li><a href="#advantages">Ventajas Clave</a></li>
+        <li><a href="#lots">Lotes</a></li>
+        <li><a href="#investment">Inversión</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Header profesional -->
+  <header id="home">
+    <div class="container animate">
+      <!-- Logo grande en el header -->
+      <img src="LOGO.jpg" alt="O'BRAN Logistics Park" class="header-logo">
+      <h1>O'BRAN Logistics Park</h1>
+      <p class="tagline">Clúster logístico de almacenamiento y movilidad ubicado en Irapuato, Guanajuato, en el corazón del Bajío industrial de México.</p>
+      <a href="#investment" class="cta-button">Solicitar Información <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </header>
+
+  <!-- Quiénes Somos profesional -->
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title">¿Quiénes Somos?</h2>
+      <div class="grid">
+        <div class="card animate">
+          <h3><i class="fas fa-building"></i> Empresa</h3>
+          <p>Puerta de Olivo Construcciones S.A. de C.V. se dedica a la construcción, administración y desarrollo de proyectos inmobiliarios, comerciales y logísticos en el Bajío.</p>
+        </div>
+        <div class="card animate">
+          <h3><i class="fas fa-bullseye"></i> Misión</h3>
+          <p>Crear desarrollos que consoliden la inversión, impulsen el crecimiento regional y generen nuevos empleos.</p>
+        </div>
+        <div class="card animate">
+          <h3><i class="fas fa-eye"></i> Visión</h3>
+          <p>Ser una empresa competitiva en el desarrollo de proyectos logísticos a nivel regional y nacional.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experiencia y Alcance profesional -->
+  <section id="experience" class="alt-bg">
+    <div class="container">
+      <h2 class="section-title">Experiencia y Alcance</h2>
+      <div class="highlight-box animate">
+        <h3 style="text-align: center; color: white; margin-bottom: 20px; font-size: 1.3rem;">+20 Años de Experiencia en el Sector</h3>
+        <div class="stats">
+          <div class="stat animate">
+            <strong>20+</strong>
+            <span>Años de experiencia en desarrollo logístico</span>
+          </div>
+          <div class="stat animate">
+            <strong>60,000 m²</strong>
+            <span>Superficie total del parque logístico</span>
+          </div>
+          <div class="stat animate">
+            <strong>23</strong>
+            <span>Lotes industriales disponibles</span>
+          </div>
+          <div class="stat animate">
+            <strong>Bajío</strong>
+            <span>Ubicación estratégica en el corazón industrial</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ubicación Estratégica profesional -->
+  <section id="location">
+    <div class="container">
+      <h2 class="section-title">Ubicación Estratégica</h2>
+      <div class="location-info">
+        <div class="location-text animate">
+          <p>O'BRAN Logistics Park se localiza en Irapuato, Guanajuato, con acceso directo a la Carretera Federal 45 y conexión con León, Silao, Salamanca, Celaya, Querétaro y La Piedad.</p>
+          <a href="https://maps.app.goo.gl/q4tFpb4Q3Syu5tTH8" target="_blank" class="map-link">
+            <i class="fas fa-map-marked-alt"></i> Ver ubicación en Google Maps
+          </a>
+        </div>
+        <div class="animate" style="width: 100%;">
+          <div class="card card-with-icon">
+            <div class="card-icon icon-location">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div class="card-content">
+              <h3>Ubicación Estratégica</h3>
+              <ul class="features-list">
+                <li>Conexión con principales corredores industriales</li>
+                <li>Acceso a puertos y fronteras</li>
+                <li>Proximidad a centros de población</li>
+                <li>Cercanía a aeropuertos internacionales</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección de Ventajas Clave (Agrupada) -->
+  <section class="advantages-section" id="advantages">
+    <div class="advantages-container">
+      <h2 class="advantages-title">Ventajas Clave de O'BRAN Logistics Park</h2>
+      
+      <div class="advantages-grid">
+        <!-- Experiencia y Alcance -->
+        <div class="advantage-card animate">
+          <h3><i class="fas fa-chart-line"></i> Experiencia y Alcance</h3>
+          <p><strong>+20 años de experiencia</strong> en el desarrollo de proyectos logísticos e industriales en el Bajío.</p>
+          <ul class="features-list" style="border-color: rgba(255,255,255,0.2);">
+            <li style="color: white; border-color: rgba(255,255,255,0.1);">Desarrollo de más de 60,000 m² de parques logísticos</li>
+            <li style="color: white; border-color: rgba(255,255,255,0.1);">23 lotes industriales diseñados para operaciones eficientes</li>
+            <li style="color: white; border-color: rgba(255,255,255,0.1);">Ubicación estratégica en el corazón del Bajío industrial</li>
+            <li style="color: white; border-color: rgba(255,255,255,0.1);">Track record comprobado en entregas exitosas</li>
+          </ul>
+        </div>
+        
+        <!-- Infraestructura Avanzada -->
+        <div class="advantage-card animate">
+          <h3><i class="fas fa-hard-hat"></i> Infraestructura Avanzada</h3>
+          <p>Diseñado con la más alta tecnología y estándares de calidad para operaciones logísticas eficientes.</p>
+          <ul class="features-list" style="border-color: rgba(255,255,255,0.2);">
+            <li style="color: white; border-color: rgba(255,255,255,0.1);">Vialidades de concreto hidráulico (25m de ancho)</li>
+            <li style="color: white; border-color: rgba(255,255,255,0.1);">Iluminación pública con paneles solares</li>
+            <li style="color: white; border-color: rgba(255,255,255,0.1);">Conexión a red eléctrica CFE (18 kW por lote)</li>
+            <li style="color: white; border-color: rgba(255,255,255,0.1);">Sistemas de agua y saneamiento completos</li>
+            <li style="color: white; border-color: rgba(255,255,255,0.1);">Muro perimetral con protección integral</li>
+          </ul>
+        </div>
+        
+        <!-- Seguridad Integral -->
+        <div class="advantage-card animate">
+          <h3><i class="fas fa-shield-alt"></i> Seguridad Integral</h3>
+          <p>Sistemas de seguridad de última generación para garantizar la protección de su inversión 24/7.</p>
+          <ul class="features-list" style="border-color: rgba(255,255,255,0.2);">
+            <li style="color: white; border-color: rgba(255,255,255,0.1);">2 casetas de acceso controlado</li>
+            <li style="color: white; border-color: rgba(255,255,255,0.1);">Circuito cerrado de vigilancia 24/7</li>
+            <li style="color: white; border-color: rgba(255,255,255,0.1);">Centro de monitoreo privado</li>
+            <li style="color: white; border-color: rgba(255,255,255,0.1);">Ubicación estratégica junto al C4 de Irapuato</li>
+            <li style="color: white; border-color: rgba(255,255,255,0.1);">Carril perimetral de amortiguamiento</li>
+          </ul>
+        </div>
+        
+        <!-- Oportunidades de Inversión -->
+        <div class="advantage-card animate">
+          <h3><i class="fas fa-handshake"></i> Oportunidades de Inversión</h3>
+          <p>Flexibilidad total en modelos de inversión adaptados a las necesidades de cada cliente.</p>
+          <ul class="features-list" style="border-color: rgba(255,255,255,0.2);">
+            <li style="color: white; border-color: rgba(255,255,255,0.1);">Venta de lotes logísticos con servicios incluidos</li>
+            <li style="color: white; border-color: rgba(255,255,255,0.1);">Construcción de naves a medida</li>
+            <li style="color: white; border-color: rgba(255,255,255,0.1);">Proyectos llave en mano desde diseño hasta entrega</li>
+            <li style="color: white; border-color: rgba(255,255,255,0.1);">Renta de espacios para operación inmediata</li>
+            <li style="color: white; border-color: rgba(255,255,255,0.1);">Asesoría personalizada en planes de inversión</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lotes Disponibles PROFESIONAL - Tabla corregida -->
+  <section id="lots" class="alt-bg">
+    <div class="container">
+      <h2 class="section-title">Lotes Disponibles</h2>
+      
+      <div class="table-container animate">
+        <table class="lots-table">
+          <thead>
+            <tr>
+              <th>Lote</th>
+              <th>Superficie (m²)</th>
+              <th>Disponibilidad</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>4,138.31</td><td>Disponible</td></tr>
+            <tr><td>2</td><td>2,007.99</td><td>Disponible</td></tr>
+            <tr><td>3</td><td>1,940.93</td><td>Disponible</td></tr>
+            <tr><td>4</td><td>1,848.67</td><td>Disponible</td></tr>
+            <tr><td>5</td><td>1,756.41</td><td>Disponible</td></tr>
+            <tr><td>6</td><td>1,664.15</td><td>Disponible</td></tr>
+            <tr><td>7</td><td>1,618.02</td><td>Disponible</td></tr>
+            <tr><td>8</td><td>1,618.02</td><td>Disponible</td></tr>
+            <tr><td>9</td><td>1,658.92</td><td>Disponible</td></tr>
+            <tr><td>10</td><td>1,740.73</td><td>Disponible</td></tr>
+            <tr><td>11</td><td>2,074.36</td><td>Disponible</td></tr>
+            <tr><td>12</td><td>1,580.20</td><td>Disponible</td></tr>
+            <tr><td>13 - 22</td><td>1,606.50</td><td>Disponible</td></tr>
+            <tr><td>23</td><td>4,627.52</td><td>Disponible</td></tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <div class="table-scroll-hint animate">
+        <i class="fas fa-arrows-alt-h"></i> Desliza horizontalmente para ver toda la tabla en dispositivos móviles
+      </div>
+      
+      <p style="text-align: center; margin-top: 15px; font-style: italic; font-size: 0.9rem; color: var(--primary); font-weight: 500;">
+        Total de superficie disponible: <strong>60,000 m²</strong> • 23 lotes industriales
+      </p>
+    </div>
+  </section>
+
+  <!-- Oportunidades de Inversión profesional -->
+  <section id="investment">
+    <div class="container">
+      <h2 class="section-title">Oportunidades de Inversión</h2>
+      <div class="highlight-box animate">
+        <h3 style="text-align: center; color: white; margin-bottom: 20px; font-size: 1.3rem;">¿Interesado en invertir en el corazón del Bajío?</h3>
+        <p style="text-align: center; color: white; font-size: 0.95rem; margin-bottom: 15px;">Contáctenos para recibir información detallada sobre disponibilidad, precios y planes de inversión personalizados.</p>
+        
+        <div class="grid" style="margin-top: 25px;">
+          <div class="card animate" style="background: rgba(255,255,255,0.9);">
+            <h3><i class="fas fa-envelope"></i> Contacto Directo</h3>
+            <p>Para información detallada sobre lotes, precios y planes de inversión:</p>
+            <div style="text-align: center; margin-top: 15px;">
+              <a href="mailto:info@obranlogistics.com" class="cta-button" style="font-size: 0.85rem;">
+                <i class="fas fa-envelope"></i> info@obranlogistics.com
+              </a>
+            </div>
+          </div>
+          
+          <div class="card animate" style="background: rgba(255,255,255,0.9);">
+            <h3><i class="fab fa-instagram"></i> Síguenos en Instagram</h3>
+            <p>Mantente al día con nuestras últimas noticias, avances y proyectos:</p>
+            <div style="text-align: center; margin-top: 15px;">
+              <a href="https://instagram.com/obranlogisticspark_mx" target="_blank" class="instagram-button">
+                <i class="fab fa-instagram"></i> @obranlogisticspark_mx
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 30px;">
+          <a href="mailto:info@obranlogistics.com" class="cta-button" style="background-color: white; color: var(--primary); padding: 12px 30px; font-size: 1rem;">
+            <i class="fas fa-calendar-check"></i> Solicitar Visita y Cotización
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer profesional -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-highlight">
+        <!-- Logo en el footer -->
+        <div style="text-align: center; margin-bottom: 20px;">
+          <img src="LOGO.jpg" alt="O'BRAN Logistics Park" style="height: 40px;">
+        </div>
+        <p><i class="fas fa-map-marker-alt"></i> O'BRAN Logistics Park · Irapuato, Guanajuato</p>
+        <p><i class="fas fa-arrow-right"></i> Próximamente: O'BRAN Logistics Park PyME · Puerto Interior de Guanajuato</p>
+        <p style="margin-top: 15px;">
+          <a href="https://instagram.com/obranlogisticspark_mx" target="_blank" style="color: var(--accent); text-decoration: none; display: inline-flex; align-items: center;">
+            <i class="fab fa-instagram" style="margin-right: 8px;"></i> Síguenos: @obranlogisticspark_mx
+          </a>
+        </p>
+      </div>
+      <div class="copyright">
+        <p>© 2026 O'BRAN Logistics Park. Todos los derechos reservados.</p>
+        <p>Desarrollado por Puerta de Olivo Construcciones S.A. de C.V. · +20 años de experiencia en desarrollo logístico</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Variables globales optimizadas
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.getElementById('navLinks');
+    const navbar = document.querySelector('.navbar');
+    const navLinksItems = document.querySelectorAll('.nav-links a');
+    
+    // Alternar menú móvil optimizado
+    mobileMenuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      navLinks.classList.toggle('active');
+      const isActive = navLinks.classList.contains('active');
+      mobileMenuBtn.innerHTML = isActive 
+        ? '<i class="fas fa-times"></i>' 
+        : '<i class="fas fa-bars"></i>';
+      
+      // Prevenir scroll del cuerpo cuando el menú está abierto
+      document.body.style.overflow = isActive ? 'hidden' : 'auto';
+    });
+    
+    // Cerrar menú al hacer clic en un enlace
+    navLinksItems.forEach(item => {
+      item.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+        document.body.style.overflow = 'auto';
+      });
+    });
+    
+    // Navegación suave optimizada
+    navLinksItems.forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if(targetId === '#home') {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+          return;
+        }
+        
+        const targetElement = document.querySelector(targetId);
+        if(targetElement) {
+          // Calcular posición considerando la navbar fija
+          const navbarHeight = navbar.offsetHeight;
+          const targetPosition = targetElement.offsetTop - navbarHeight;
+          
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+        }
+        
+        // Cerrar menú móvil después de hacer clic
+        if(window.innerWidth <= 767) {
+          navLinks.classList.remove('active');
+          mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+          document.body.style.overflow = 'auto';
+        }
+      });
+    });
+    
+    // Cambiar navbar al hacer scroll optimizado
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        if(window.scrollY > 50) {
+          navbar.style.backgroundColor = 'rgba(15, 32, 39, 0.98)';
+          navbar.style.padding = '8px 0';
+          navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.15)';
+        } else {
+          navbar.style.backgroundColor = 'rgba(15, 32, 39, 0.95)';
+          navbar.style.padding = '12px 0';
+          navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+        }
+      }, 10);
+    });
+    
+    // Animaciones al hacer scroll optimizadas
+    const observerOptions = {
+      threshold: 0.05,
+      rootMargin: '0px 0px -30px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) {
+          entry.target.classList.add('animate');
+        }
+      });
+    }, observerOptions);
+    
+    // Observar elementos para animación
+    document.querySelectorAll('.card, .stat, .highlight-box, .location-text, .table-container, .advantage-card').forEach(el => {
+      observer.observe(el);
+    });
+    
+    // Cerrar menú al hacer clic fuera optimizado
+    document.addEventListener('click', (e) => {
+      if(!navLinks.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+        navLinks.classList.remove('active');
+        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+        document.body.style.overflow = 'auto';
+      }
+    });
+    
+    // Cerrar menú al cambiar tamaño de ventana
+    window.addEventListener('resize', () => {
+      if(window.innerWidth > 767) {
+        navLinks.classList.remove('active');
+        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+        document.body.style.overflow = 'auto';
+      }
+    });
+    
+    // Inicializar animaciones para elementos visibles al cargar
+    window.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.card, .stat, .highlight-box, .location-text, .table-container, .advantage-card').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+        const isVisible = rect.top <= windowHeight * 0.85;
+        
+        if(isVisible) {
+          el.classList.add('animate');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
